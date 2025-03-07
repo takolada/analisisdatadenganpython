@@ -74,7 +74,8 @@ with tabs[0]:
     ax.set_xlabel("Tanggal")
     ax.set_ylabel("Total Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("""Peminjaman sepeda dari waktu ke waktu mengalami peningkatan. 
+    Tren ini harus dipertahankan melalui strategi-strategi yang disusun berbasis data""")
 
 with tabs[1]:
     st.subheader("Korelasi antara Variabel")
@@ -82,7 +83,15 @@ with tabs[1]:
     sns.heatmap(df_day.corr(), annot=True, cmap='coolwarm', fmt='.2f', linewidths=0.5, ax=ax)
     ax.set_title("Heatmap Korelasi")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("""
+- Casual dan working day memiliki korelasi terbalik sebesar -0.52, artinya pengguna kasual akan meningkat di hari libur dan weekends. 
+- Temp (temperatur) dan cnt (jumlah peminjaman sepeda) berkorelasi searah dengan nilai 0.63, artinya pengguna cenderung meningkat seiring meningkatnya temperatur lingkungan. 
+- Dteday (tanggal) dan cnt (jumlah peminjaman) memiliki korelasi berbanding lurus sebesar 0.63, artinya jumlah pelanggan cenderung meningkat seiring berjalannya waktu. Hal ini dapat disebabkan oleh peningkatan permintaan, peningkatan penawaran (ketersediaan sepeda), atau keduanya.
+- Temp (*temperature*) dan atemp (*feeling temperature*) memiliki korelasi mendekati 1 (korelasi linear) sehingga selanjutnya analisis akan difokuskan hanya terhadap temp (temperatur).
+- Pengguna cenderung meminjam sepeda saat cuaca cerah.
+- Weathersit berkorelasi linear dengan kelembapan. Semakin cerah cuaca, semakin rendah kelembapan.
+- Weathersit tidak berkorelasi linear terhadap season karena variabel tersebut bersifat kategorikal.
+    """)
 
 with tabs[2]:
     st.subheader("Peminjaman Sepeda terhadap Waktu dalam Sehari")
@@ -92,7 +101,7 @@ with tabs[2]:
     ax.set_xlabel("Jam")
     ax.set_ylabel("Jumlah Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Peminjaman sepeda mencapai puncaknya pada pukul 8 pagi dan 5 sore.")
 
     st.subheader("Peminjaman Berdasarkan Hari")
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -111,7 +120,7 @@ with tabs[2]:
     ax.set_ylabel("Rata-rata Peminjaman")
     ax.tick_params(axis='x', rotation=45)
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Peminjaman sepeda paling banyak terjadi pada hari kerja.")
 
     st.subheader("Peminjaman Harian berdasarkan Tanggal")
     df_sorted = df_day.sort_values(by='cnt', ascending=False)
@@ -125,7 +134,7 @@ with tabs[2]:
     ax.set_ylabel("Jumlah Peminjaman")
     ax.tick_params(axis='x', rotation=45)
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Tidak ditemukan peristiwa unik pada tanggal dengan peminjaman terbanyak terjadi.")
     
     # Plot terendah
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -136,7 +145,7 @@ with tabs[2]:
     ax.set_ylabel("Jumlah Peminjaman")
     ax.tick_params(axis='x', rotation=45)
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Peminjaman paling sedikit terjadi pada tanggal 2012-10-29 yaitu 22 peminjaman. Pada hari tersebut, terjadi Badai Sandy di New York City [[Wikipedia](https://en.wikipedia.org/wiki/Portal:Current_events/2012_October_29)].")
 
 with tabs[3]:
     st.subheader("Pengaruh Musim terhadap Peminjaman Sepeda")
@@ -146,7 +155,7 @@ with tabs[3]:
     ax.set_xlabel("Musim")
     ax.set_ylabel("Rata-rata Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Peminjaman terbanyak terjadi pada musim gugur dan peminjaman paling sedikit terjadi pada musim semi.")
 
     st.subheader("Pengaruh Cuaca terhadap Peminjaman Sepeda")
     fig, ax = plt.subplots(figsize=(10, 5))
@@ -155,7 +164,7 @@ with tabs[3]:
     ax.set_xlabel("Kondisi Cuaca")
     ax.set_ylabel("Rata-rata Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Pengguna lebih sering mengendarai sepeda saat cuaca cerah.")
 
     st.subheader("Pengaruh Temperatur terhadap Peminjaman Sepeda")
     # Regresi polinomial agar tren lebih terlihat
@@ -171,7 +180,8 @@ with tabs[3]:
     ax.set_xlabel("Temperatur (ternormalisasi)")
     ax.set_ylabel("Jumlah Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("""Tren kenaikan jumlah peminjaman terlihat seiring meningkatnya temperatur 
+    hingga menurun kembali di titik tertentu. Akan tetapi, tren ini memiliki standar deviasi yang tinggi.""")
     
     st.subheader("Pengaruh Kelembaban terhadap Peminjaman Sepeda")
     # Regresi polinomial agar tren lebih terlihat
@@ -187,6 +197,6 @@ with tabs[3]:
     ax.set_xlabel("Kelembaban (ternormalisasi)")
     ax.set_ylabel("Jumlah Peminjaman")
     st.pyplot(fig)
-    st.markdown("")
+    st.markdown("Tidak terdapat korelasi yang signifikan antara peminjaman dengan kelembapan udara.")
 
 st.caption("oleh Fawaz Amajida")
