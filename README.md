@@ -20,3 +20,16 @@ pip install -r requirements.txt
 ```
 streamlit run dashboard.py
 ```
+
+>## **Dataset Tambahan**  
+>Terdapat dataset tambahan yang digunakan untuk mencoba Geospatial Analysis.
+>Dataset tersebut adalah "2011-capitalbikeshare-tripdata.zip" dan "2012-capitalbikeshare-tripdata.zip" 
+>yang memuat catatan tempat terjadinya peminjaman sepeda. Dataset tersebut berukuran besar
+>dan tidak dapat diunggah ke Github. Dataset dapat diakses melalui https://s3.amazonaws.com/capitalbikeshare-data/index.html.
+>Dataset tersebut disusun dengan path sebagai berikut.
+>
+>- \data\Bike Sharing Raw\2011-capitalbikeshare-tripdata.csv  
+>- \data\Bike Sharing Raw\2012Q1-capitalbikeshare-tripdata.csv  
+>- \data\Bike Sharing Raw\2012Q2-capitalbikeshare-tripdata.csv  
+>- \data\Bike Sharing Raw\2012Q3-capitalbikeshare-tripdata.csv  
+>- \data\Bike Sharing Raw\2012Q4-capitalbikeshare-tripdata.csv
